@@ -11,6 +11,11 @@ var RE_BATTERY = /\/battery\/?/;
 
 var CONFIG = switchConfigForCurrentOS();
 
+var WINDOWS_CHARGING_STATE_MAP = {
+  1: 'discharging',
+  2: 'charging'
+};
+
 var BATTERY_ERROR_MESSAGE = '404 - Unable to retrieve battery status';
 
 function switchConfigForCurrentOS () {
@@ -85,7 +90,7 @@ function mapKeysForMac(battery) {
 function mapKeysForWindows(battery) {
   var mappedBattery = {};
   mappedBattery.percentage = battery['EstimatedChargeRemaining'];
-  mappedBattery.state = battery['BatteryStatus'];
+  mappedBattery.state = WINDOWS_CHARGING_STATE_MAP[battery['BatteryStatus']];
   mappedBattery.timeToEmpty = battery['TimeOnBattery'];
   return mappedBattery;
 }
