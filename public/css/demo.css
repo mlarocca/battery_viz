@@ -1,0 +1,232 @@
+@import url(http://fonts.googleapis.com/css?family=Varela+Round);
+
+.container, .container div {
+  position: relative;
+  margin: 0px 0px;
+  font-family: 'Varela Round', sans-serif !important;
+}
+
+.outer-panel {
+  padding: 5px;
+}
+
+.inner-panel {
+  border: 1px solid rgba(230, 230, 230, 0.75);
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+.battery-panel {
+  height: 220px;
+  overflow: hidden;   
+}
+
+.networks-panel {
+  height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;   
+}
+
+.network-details-panel {
+  height: 360px;
+  overflow: hidden;
+  margin-top: 20px !important;   
+}
+
+.inner-panel .row {
+  text-align: center;
+}
+
+.row-spacer {
+  height: 20px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.key {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.value {
+  font-size: 12px;
+}
+
+/********************************  NETWORKS LIST ITEMS **************************/
+
+.list-group {
+  margin-right: auto !important;
+  margin-left: auto !important;
+  width: 320px;
+}
+
+.list-group-item {
+  padding: 2px !important;
+  width: 100%;
+}
+
+.list-group-item-heading {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 1px !important;
+}
+
+.list-group-item-text {
+  font-size: 10px;
+}
+
+.protected-wifi {
+  background-image: url(../img/sprite.png);
+  background-repeat: no-repeat;
+  background-position: -163px -32px;  
+  width: 40px;
+  height: 32px;
+  position: absolute !important;
+  right: 2px;
+  bottom: 0px;  /* halfway across the shell border */
+  cursor: default !important;  
+}
+
+/********************************   BATTERY  **************************/
+.battery-div {
+  position: relative;
+  width: 128px !important;
+  height: 64px;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+  text-align: center;
+}
+
+.battery-shell {
+  background-image: url(../img/sprite.png);
+  background-repeat: no-repeat;
+  background-position: 0px 0px;  
+  width: 128px;
+  height: 64px;
+  z-index: 2;
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  margin: 0px;
+}
+
+.battery-level {
+  background: #ff0000; /* Old browsers */
+  background: -moz-linear-gradient(left,  #ff0000 1%, #ffb200 30%, #ffff00 50%, #aeff00 70%, #00ff00 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(1%,#ff0000), color-stop(30%,#ffb200), color-stop(50%,#ffff00), color-stop(70%,#aeff00), color-stop(100%,#00ff00)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  #ff0000 1%,#ffb200 30%,#ffff00 50%,#aeff00 70%,#00ff00 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  #ff0000 1%,#ffb200 30%,#ffff00 50%,#aeff00 70%,#00ff00 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  #ff0000 1%,#ffb200 30%,#ffff00 50%,#aeff00 70%,#00ff00 100%); /* IE10+ */
+  background: linear-gradient(to right,  #ff0000 1%,#ffb200 30%,#ffff00 50%,#aeff00 70%,#00ff00 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#00ff00',GradientType=1 ); /* IE6-9 */
+
+  width: 105px;
+  height: 50px;
+  position: absolute !important;
+  top: 7px;
+  left: 7px;
+  z-index: 0;
+}
+
+.battery-mask {
+  background: white;
+  max-width: 105px;
+  height: 50px;
+  position: absolute !important;
+  top: 0px;
+  right: 0px;
+  z-index: 1;
+}
+
+.battery-percent-text {
+  position: absolute;
+  top: 30%;
+  left: 0%;
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;  
+}
+
+.battery-red {
+  color: red;
+}
+
+.battery-yellow {
+  color: orange;
+}
+
+.battery-green {
+  color: green;
+}
+
+.battery-warning {
+  background-image: url(../img/sprite.png);
+  background-repeat: no-repeat;
+  background-position: -130px -34px;  
+  width: 32px;
+  height: 30px;
+  position: absolute !important;
+  left: 6px;
+  bottom: -9px;  /* halfway across the shell border */
+  cursor: default !important; 
+  z-index: 3;
+}
+
+.battery-plug {
+  background-image: url(../img/sprite.png);
+  background-repeat: no-repeat;
+  background-position: -130px 0px;  
+  width: 33px;
+  height: 32px;
+  position: absolute !important;
+  right: 20px;
+  bottom: -12px;  /* halfway across the shell border */
+  cursor: default !important;  
+  z-index: 3;  
+}
+
+
+/**************************  PLAY/PAUSE BUTTONS **************************************/
+
+
+.play-button {
+  background-image: url(../img/sprite.png);
+  background-repeat: no-repeat;
+  background-position: -190px 0px;  
+  width: 28px;
+  height: 27px;
+  cursor: pointer;
+  float: right;
+}
+
+.pause-button {
+  background-image: url(../img/sprite.png);
+  background-repeat: no-repeat;
+  background-position: -218px 0px;  
+  width: 28px;
+  height: 27px;
+  cursor: pointer;
+  float: right;
+}
+
+/*****************************  NET ERROR ICON  ****************************************/
+
+.update-error {
+  background-image: url(../img/sprite.png);
+  background-repeat: no-repeat;
+  background-position: -204px -32px;  
+  width: 32px;
+  height: 32px;
+  float: left;
+  cursor: default !important;  
+}

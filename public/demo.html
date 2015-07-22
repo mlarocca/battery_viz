@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Battery Viz</title>  </head>
+    <link rel="stylesheet" type="text/css" href="css/demo.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <body>
+    <div id='panels'></div>
+    
+    <script id='meterVizTemplate' type='text/ractive'>
+
+      <div class='container'>
+        <div class='row-spacer'>
+        </div>
+        <div class='row'>
+          <div class='col-md-6  outer-panel'>
+            <div class='inner-panel battery-panel'>
+              <span class='title'>Battery state</span>
+              <div class='update-error' style={{!batteryUpdateError ? 'visibility:hidden;' : ''}} data-toggle="tooltip" data-placement="top" title='Unable to refresh data'>
+              </div>
+
+              <!-- The two buttons must share the same place, so we must use display:none instead of visibility:hidden -->
+              <div class='play-button' on-click='battery-play' style={{!batteryPaused ? 'display:none;' : ''}} data-toggle="tooltip" data-placement="top" title='Restarts battery updates' >
+              </div>
+              <div class='pause-button' on-click='battery-pause' style={{batteryPaused ? 'display:none;' : ''}} data-toggle="tooltip" data-placement="top" title='Pause battery updates'>
+              </div>
+              <br>
+
+
+              {{#batteryState}}
+                <br>
+                <div class='battery-div'>
+                  <div class='battery-shell'>
+                    <div class='battery-percent-text'>{{batteryPercent.toFixed(1) + '%'}}</div>
+                  </div>
+                  <div class='battery-level'>
+                    <div class='battery-mask' style="width:{{(100 - batteryPercent) + '%'}};">
+                    </div>                
+                  </div>
+                  {{#batteryCharging}}
+                    <div class='battery-plug' intro-outro='fade:1000'></div>
+                  {{/batteryCharging}}
+                  {{#batteryPercent <= batteryRedThreshold}}
+                    <div class='battery-warning' intro-outro='fade:1000'></div>
+                  {{/batteryLife}}                
+                </div>
+                <br>
+                <br>
+                  <span class='key'>Battery state:</span> <span class='value {{batteryStateClass(batteryState)}}'>{{batteryState}}</span>
+                  <br>
+                  {{#batteryLife}}
+                    <span class='key'>Time to empty:</span> <span class='value {{batteryLifeClass(batteryPercent)}}'>{{batteryLife}}</span>
+                  {{/batteryLife}}                  
+              {{/batteryState}}
+              {{^batteryState}}
+                <br>
+                LOADING...
+              {{/batteryState}}
+      
+            </div>     
+
+          </div>
+   
+        </div>
+      </div>
+    </script>    
+    <script data-main="js/demo.min" src="js/lib/require.js"></script>
+
+  </body>
+</html>
