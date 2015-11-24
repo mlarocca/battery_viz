@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <body>
     <div id='panels'></div>
-    
+
     <script id='meterVizTemplate' type='text/ractive'>
 
       <div class='container'>
@@ -35,14 +35,14 @@
                   </div>
                   <div class='battery-level'>
                     <div class='battery-mask' style="width:{{(100 - batteryPercent) + '%'}};">
-                    </div>                
+                    </div>
                   </div>
                   {{#batteryCharging}}
                     <div class='battery-plug' intro-outro='fade:1000'></div>
                   {{/batteryCharging}}
                   {{#batteryPercent <= batteryRedThreshold}}
                     <div class='battery-warning' intro-outro='fade:1000'></div>
-                  {{/batteryLife}}                
+                  {{/batteryLife}}
                 </div>
                 <br>
                 <br>
@@ -50,20 +50,68 @@
                   <br>
                   {{#batteryLife}}
                     <span class='key'>Time to empty:</span> <span class='value {{batteryLifeClass(batteryPercent)}}'>{{batteryLife}}</span>
-                  {{/batteryLife}}                  
+                  {{/batteryLife}}
               {{/batteryState}}
               {{^batteryState}}
                 <br>
                 LOADING...
               {{/batteryState}}
-      
-            </div>     
+
+            </div>
+{{#selectedNetwork !== null}}
+              <div class='inner-panel network-details-panel'>
+              <span class='title'>Details about {{selectedNetwork.ESSID}}</span>
+              <br>
+              <br>
+              {{#selectedNetwork:key}}
+                <span class='key'>{{key}}:</span> <span class='value'>{{this}}</span>
+                <br>
+              {{/selectedNetwork}}
+              </div>
+            {{/selectedNetwork}}
 
           </div>
-   
+
+          <div class='col-md-6 outer-panel'>
+            <div class='inner-panel networks-panel'>
+              <span class='title'>Available WiFi Networks</span>
+
+              <div class='update-error' style={{!networksUpdateError ? 'visibility:hidden;' : ''}} data-toggle="tooltip" data-placement="top" title='Unable to refresh WiFi data'>
+              </div>
+
+              <!-- The two buttons must share the same place, so we must use display:none instead of visibility:hidden -->
+              <div class='play-button' on-click='networks-play' style={{!networksPaused ? 'display:none;' : ''}} data-toggle="tooltip" data-placement="top" title='Restarts WiFi updates'>
+              </div>
+              <div class='pause-button' on-click='networks-pause' style={{networksPaused ? 'display:none;' : ''}} data-toggle="tooltip" data-placement="top" title='Pause WiFi updates'>
+              </div>
+
+              <br>
+              <br>
+              {{^wifiNetworks}}
+                  LOADING...
+              {{/wifiNetworks}}
+              <div class="list-group">
+              {{#wifiNetworks: num}}
+                <a href="javascript:" class="list-group-item" id={{'network_' + num}} on-click="expandWifi">
+                  <h5 class="list-group-item-heading">{{ESSID}}</h5>
+                  <p class="list-group-item-text">{{Address}}</p>
+                  {{#isNetworkEncrypted(this)}}
+                    <div class='protected-wifi'>
+                    </div>
+                  {{/Encription}}
+                </a>
+              {{/wifiNetworks}}
+              </div>
+
+            </div>
+          </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
-    </script>    
+    </script>
     <script data-main="js/demo.min" src="js/lib/require.js"></script>
 
   </body>
