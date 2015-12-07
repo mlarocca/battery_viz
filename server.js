@@ -17,7 +17,7 @@ var NET_QUALITY_PREFIX = 'Quality';
 var NET_SIGNAL_PREFIX = 'Signal level';
 var NET_EXTRA_PREFIX = 'Extra';
 
-var CONFIG = switchConfigForCurrentOS();
+var CONFIG = getConfigForCurrentOS();
 
 var WINDOWS_CHARGING_STATE_MAP = {
   1: 'discharging',
@@ -27,7 +27,7 @@ var WINDOWS_CHARGING_STATE_MAP = {
 var BATTERY_ERROR_MESSAGE = '500 - Unable to retrieve battery status';
 var WIFI_ERROR_MESSAGE = '500 - Unable to retrieve wifi status';
 
-function switchConfigForCurrentOS () {
+function getConfigForCurrentOS () {
   switch(process.platform) {
     case 'linux':
       return {
